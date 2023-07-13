@@ -8,6 +8,7 @@ import com.ninjaone.backendinterviewproject.model.DeviceType;
 import com.ninjaone.backendinterviewproject.model.ServiceDevice;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,15 @@ public class ServiceDeviceService {
     public Device saveDeviceEntity(Device device){
         return deviceRepository.save(device);
     }
+
+    public Device updateDeviceEntity(Device device){
+
+        device.getServices().stream().map(servicePayload -> serviceRepository.findById(servicePayload.getId()).orElse(null));
+
+        return deviceRepository.save(device);
+    }
+
+
     public Optional<Device> getDeviceEntity(Integer id){
         return deviceRepository.findById(id);
     }
@@ -40,6 +50,7 @@ public class ServiceDeviceService {
     public ServiceDevice saveServiceDeviceEntity(ServiceDevice service){
         return serviceRepository.save(service);
     }
+
     public Optional<ServiceDevice> getServiceDeviceEntity(Integer id){
         return serviceRepository.findById(id);
     }
@@ -51,5 +62,18 @@ public class ServiceDeviceService {
 
     public Optional<DeviceType> getDeviceTypeEntity(Integer id) {
         return deviceTypeRepository.findById(id);
+    }
+
+    public BigDecimal calculateDeviceCost(Integer id) {
+
+        Device deviceToCalculate = deviceRepository.findById(id).orElse(null);
+
+
+        BigDecimal total = deviceToCalculate.getServices()
+                .stream()
+                .map(ServiceDevice::getValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return total;
     }
 }

@@ -7,6 +7,7 @@ import com.ninjaone.backendinterviewproject.service.ServiceDeviceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -45,8 +46,14 @@ public class ServiceDeviceController {
         return serviceDeviceService.saveDeviceEntity(device);
     }
 
+    @PutMapping("/device")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Device putDeviceEntity(@RequestBody Device device){
+        return serviceDeviceService.updateDeviceEntity(device);
+    }
+
     @GetMapping("/device/{id}")
-    private Device getDeviceEntity(@PathVariable Integer id){
+    public Device getDeviceEntity(@PathVariable Integer id){
         return serviceDeviceService.getDeviceEntity(id)
                 .orElseThrow();
     }
@@ -64,8 +71,13 @@ public class ServiceDeviceController {
     }
 
     @GetMapping("/type/{id}")
-    private DeviceType getDeviceTypeEntity(@PathVariable Integer id){
+    public DeviceType getDeviceTypeEntity(@PathVariable Integer id){
         return serviceDeviceService.getDeviceTypeEntity(id)
                 .orElseThrow();
+    }
+
+    @GetMapping("/device/cost/{id}")
+    public BigDecimal getTotalCostDevice(@PathVariable Integer id){
+        return serviceDeviceService.calculateDeviceCost(id);
     }
 }

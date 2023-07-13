@@ -32,12 +32,10 @@ public class SpringSecurityConfig {
 
         http.headers().frameOptions().disable();
 
-
-
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) -> {
                     authorize
-                            .anyRequest().permitAll();
+                            .anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults());
         return http.build();

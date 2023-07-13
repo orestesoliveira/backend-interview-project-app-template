@@ -2,25 +2,25 @@ package com.ninjaone.backendinterviewproject.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
 public class ServiceDevice {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
+    @Column(unique=true)
     private String serviceName;
 
     private BigDecimal value;
 
-
-
+    public ServiceDevice(Integer id, String serviceName, BigDecimal value) {
+        this.id = id;
+        this.serviceName = serviceName;
+        this.value = value;
+    }
 }
