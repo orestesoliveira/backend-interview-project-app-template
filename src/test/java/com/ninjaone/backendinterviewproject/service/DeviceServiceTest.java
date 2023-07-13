@@ -28,7 +28,7 @@ public class DeviceServiceTest {
     private DeviceRepository deviceRepository;
 
     @InjectMocks
-    private ServiceDeviceService testService;
+    private DeviceService testService;
 
     private Device deviceEntity;
 
@@ -46,12 +46,9 @@ public class DeviceServiceTest {
         device.setId(1);
         device.setServices(createTestServices());
 
-
         when(deviceRepository.findById(1)).thenReturn(java.util.Optional.of(device));
 
-
         BigDecimal result = testService.calculateDeviceCost(1);
-
 
         assertEquals(new BigDecimal("1200.00"), result);
     }

@@ -1,14 +1,9 @@
 package com.ninjaone.backendinterviewproject.controller;
 
-import com.ninjaone.backendinterviewproject.model.Device;
-import com.ninjaone.backendinterviewproject.model.DeviceType;
 import com.ninjaone.backendinterviewproject.model.ServiceDevice;
 import com.ninjaone.backendinterviewproject.service.ServiceDeviceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @RestController
 public class ServiceDeviceController {
@@ -38,46 +33,4 @@ public class ServiceDeviceController {
         serviceDeviceService.deleteServiceDeviceEntity(id);
     }
 
-
-
-    @PostMapping("/device")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Device postDeviceEntity(@RequestBody Device device){
-        return serviceDeviceService.saveDeviceEntity(device);
-    }
-
-    @PutMapping("/device")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Device putDeviceEntity(@RequestBody Device device){
-        return serviceDeviceService.updateDeviceEntity(device);
-    }
-
-    @GetMapping("/device/{id}")
-    public Device getDeviceEntity(@PathVariable Integer id){
-        return serviceDeviceService.getDeviceEntity(id)
-                .orElseThrow();
-    }
-
-    @DeleteMapping("/device/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteDeviceEntity(@PathVariable Integer id){
-        serviceDeviceService.deleteDeviceEntity(id);
-    }
-
-
-    @GetMapping("/types")
-    public List<DeviceType> findAllDeviceTypes(){
-        return serviceDeviceService.findAllDeviceTypes();
-    }
-
-    @GetMapping("/type/{id}")
-    public DeviceType getDeviceTypeEntity(@PathVariable Integer id){
-        return serviceDeviceService.getDeviceTypeEntity(id)
-                .orElseThrow();
-    }
-
-    @GetMapping("/device/cost/{id}")
-    public BigDecimal getTotalCostDevice(@PathVariable Integer id){
-        return serviceDeviceService.calculateDeviceCost(id);
-    }
 }

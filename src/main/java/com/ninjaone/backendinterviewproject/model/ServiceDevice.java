@@ -23,4 +23,8 @@ public class ServiceDevice {
         this.serviceName = serviceName;
         this.value = value;
     }
+
+    public ServiceDevice(){
+        super();
+    }
 }
