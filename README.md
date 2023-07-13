@@ -42,3 +42,59 @@ Click `Run`, you should see two rows, for ids `1` and `2`
 ### Suggestions
 
 Feel free to remove or repurpose the existing Sample Repository, Entity, Controller, and Service. 
+
+
+-------
+Orestes Oliveira
+
+URLS Postman workspace
+```agsl
+
+http://localhost:8080/service
+{
+    "id": 3,
+    "serviceName": "teste a 3",
+    "value": 20
+}
+
+
+http://localhost:8080/device/1
+
+http://localhost:8080/type/1
+
+http://localhost:8080/service/1
+```
+
+
+relation fetching
+```json
+
+{
+    "id": 1,
+    "systemName": "Dev Server test 1",
+    "deviceType": {
+        "id": 1,
+        "description": "Windows Workstation",
+        "hibernateLazyInitializer": {}
+    },
+    "services": [
+        {
+            "id": 1,
+            "serviceName": "Testing Service 1",
+            "value": 300.00
+        },
+        {
+            "id": 3,
+            "serviceName": "Testing Service 3",
+            "value": 500.00
+        },
+        {
+            "id": 2,
+            "serviceName": "Testing Service 2",
+            "value": 400.00
+        }
+    ]
+}
+
+
+```
