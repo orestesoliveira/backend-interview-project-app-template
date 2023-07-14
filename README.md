@@ -49,19 +49,41 @@ Orestes Oliveira
 
 URLS Postman workspace
 
+TO insert need to submi via post the following json 2 times, on the first try u get a exception because the DeviceType object cannot be found.
+```JSON
+
+{
+    "id": 99,
+    "systemName": "Dev Server test Random name 12",
+    "deviceType": {
+        "id": 1,
+        "description": "Windows Workstation 443"
+    }
+    ,
+    "services": [
+        {
+            "id": 9,
+            "serviceName": "Testing Service 5",
+            "value": 300.00
+        },
+        {
+            "id": 10,
+            "serviceName": "Testing Service 6",
+            "value": 500.00
+        },
+        {
+            "id": 11,
+            "serviceName": "Testing Service 7",
+            "value": 400.00
+        }
+    ]
+}
+
+```
+
 
 
 ```agsl
-
-http://localhost:8080/service
-{
-    "id": 3,
-    "serviceName": "teste a 3",
-    "value": 20
-}
-
-
-http://localhost:8080/device/1
 
 http://localhost:8080/type/1
 
@@ -70,6 +92,9 @@ http://localhost:8080/service/1
 
 
 relation fetching
+
+http://localhost:8080/device/1
+
 ```json
 
 {
