@@ -63,4 +63,15 @@ public class DeviceService {
 
         return total;
     }
+
+    public Device assignServiceToDevice(Integer serviceId, Integer deviceId) {
+
+        Device deviceToUpdate = deviceRepository.findById(deviceId).get();
+
+        ServiceDevice serviceToAssign = serviceRepository.findById(serviceId).get();
+
+        deviceToUpdate.getServices().add(serviceToAssign);
+
+        return deviceRepository.save(deviceToUpdate);
+    }
 }

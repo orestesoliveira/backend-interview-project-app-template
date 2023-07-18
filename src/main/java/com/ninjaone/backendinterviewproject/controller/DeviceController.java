@@ -59,4 +59,12 @@ public class DeviceController {
     public BigDecimal getTotalCostDevice(@PathVariable Integer id){
         return serviceDeviceService.calculateDeviceCost(id);
     }
+
+    @PutMapping("/assign/{serviceId}/device/{deviceId}")
+    public Device assignServiceToDevice(
+            @PathVariable Integer serviceId,
+            @PathVariable Integer deviceId
+    ){
+        return serviceDeviceService.assignServiceToDevice(serviceId,deviceId);
+    }
 }
