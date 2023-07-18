@@ -27,6 +27,8 @@ public class ServiceDeviceController {
                 .orElseThrow();
     }
 
+
+
     @DeleteMapping("/service/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteServiceDeviceEntity(@PathVariable Integer id){

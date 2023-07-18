@@ -60,6 +60,7 @@ public class DeviceController {
         return serviceDeviceService.calculateDeviceCost(id);
     }
 
+    //http://localhost:8080/assign/4/device/1
     @PutMapping("/assign/{serviceId}/device/{deviceId}")
     public Device assignServiceToDevice(
             @PathVariable Integer serviceId,
